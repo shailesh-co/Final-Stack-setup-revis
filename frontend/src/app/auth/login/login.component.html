@@ -1,1 +1,28 @@
 <p>login works!</p>
+
+<div class="d-flex">
+    <div class="container">
+        <form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)">
+            <div>
+                <label for="">Email</label>
+                <input type="email" name="email" ngModel  #email="ngModel">
+
+            </div>
+            <label for="">Password</label>
+            <input type="password" name="password" ngModel  #password="ngModel">
+           <div>
+             <!-- <button type="submit" [disabled]="loginform.invalid" [ngClass]="{'button-invalid':loginform.invalid,'button-valid': loginform.valid}">Login</button> -->
+              <button
+          type="submit"
+          [disabled]="loginform.invalid"
+          [ngClass]="{
+            'button-invalid': loginform.invalid,
+            'button-valid': loginform.valid
+          }"
+        >
+          Login
+        </button>
+           </div>
+        </form>
+    </div>
+</div>

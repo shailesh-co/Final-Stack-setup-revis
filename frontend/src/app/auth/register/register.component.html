@@ -1,1 +1,29 @@
 <p>register works!</p>
+
+<div class="d-flex">
+<div class="container">
+    <form [formGroup]="registerform" (ngSubmit)="onsubmit()">
+        <div>
+            <label for="">name</label>
+            <input type="text" formControlName="username" >
+        </div>  
+        <div>
+            <label for="email">Email</label>
+            <input type="email" formControlName="email">
+        </div>
+        <div>
+            <label for="">Mobile number</label>
+            <input type="number" formControlName="mobilenumber">
+        </div>
+        <div>
+            <label for="pass">Password</label>
+            <input type="password" formControlName="password">
+        </div>
+        <button type="submit"  [disabled]="registerform.invalid" [ngClass]="{'btn-valid':registerform.valid,'btn-invalid':registerform.invalid}" > REGISTER</button>
+    </form>
+    <div>
+        <span> I m already registerd <a routerLink="/login">Login herr</a></span>
+    </div>
+</div>
+    
+</div>

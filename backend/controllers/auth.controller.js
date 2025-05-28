@@ -3,7 +3,7 @@ const bcrypt =require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.register = async( req , res ) => {
-      const { name, mobilenumber, email, password } = req.body;
+      const { username, mobilenumber, email, password } = req.body;
 
       try {
         const existing = await User.findOne({ email });
@@ -11,7 +11,7 @@ exports.register = async( req , res ) => {
             const hashedPassword = await bcrypt.hash(password, 10);
         //  const ismatch = await bcrypt.compare(password, User.password);
         //  if(!ismatch) return res.status(400).json({ message :'invalid emai and password'})
-         const user = new User({ name, mobilenumber, email, password: hashedPassword });
+         const user = new User({ username, mobilenumber, email, password: hashedPassword });
             await user.save();
         res.status(201).json({ message: 'User registered successfully' });
 
@@ -36,7 +36,7 @@ exports.login =async(req,res) => {
       { expiresIn: '1h' }
     );
 
-    res.json({ token, user: { name: user.name, email: user.email, mobilenumber: user.mobilenumber } });
+    res.json({ token, user: { username: user.username, email: user.email, mobilenumber: user.mobilenumber } });
   } catch (err) {
     res.status(500).json({ message: 'Login failed', error: err.message });
   }
