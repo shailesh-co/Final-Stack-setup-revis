@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -9,6 +10,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  @Output() inputdata =new EventEmitter<any> ();
 registerform!:FormGroup;
   constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService) { 
 this.registerform = this.fb.group({
@@ -24,8 +26,9 @@ this.registerform = this.fb.group({
   }
 
   onsubmit(){
-    // this.registerform;
-    // console.log(this.registerform);
+    // this.inputdata.emit(this.registerform.value)
+    localStorage.setItem('val',JSON.stringify(this.registerform.value))
+    console.log(this.registerform.value);
     // console.log(this.registerform.value);
     // this.registerform.reset();
     this.authservice.signup(this.registerform.value).subscribe(res =>{
