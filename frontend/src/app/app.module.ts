@@ -16,6 +16,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 import { CapitalsPipe } from './pipes/capitals.pipe';
+import { UserdataComponent } from './userdata/userdata/userdata.component';
+import { ProductComponent } from './product/product/product.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { CapitalsPipe } from './pipes/capitals.pipe';
     LoginComponent,
     HighlightDirective,
     ParentComponent,
-    CapitalsPipe
+    CapitalsPipe,
+    UserdataComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

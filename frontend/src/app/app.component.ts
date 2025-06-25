@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MyserviceService } from './services/myservice.service';
-import { interval, observable, Observable, timer } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime, fromEvent, interval, observable, Observable, throttleTime, timer } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { resolve } from 'path';
+import { rejects } from 'assert';
 
 @Component({
   selector: 'app-root',
@@ -22,33 +24,59 @@ userform! : FormGroup
 
   parantmsg = "from parent msg"
    userRole: string = 'admin';
+   searchControl = new FormControl();
+
+
 
   constructor(public router:Router, private myservice:MyserviceService , private fb :FormBuilder){
-    this.userform = this.fb.group({
-      username:['', ],
-      number: ['',],
-      usermail:['',]
-    })
-  }
-  onformclick(){
-    this.userform;
-    console.log(this.userform)
-    console.log(this.userform.value)
-  };
-  ngOnInit(): void {
-    this.objectkeypair()
-    this.shallocopy()
-    this.pusmethid()
- const storedData = localStorage.getItem('val');
-  if (storedData) {
-    this.userinfo = JSON.parse(storedData);
-    console.log("Parsed userinfo:", this.userinfo);
-  } else {
-    this.userinfo = [];
-    console.log("No data found in localStorage.");
-  }
+    this.searchControl.valueChanges
+      .pipe(debounceTime(50000))
+      .subscribe(value =>{
+        console.log('API call for',value)
+      });
   }
 
+  ngOnInit(): void {
+
+    console.log(0 / 0); 
+       const us= [
+  { name: 'Shailesh', age: 28 },
+  { name: 'Amit', age: 30 }
+];
+  const names = us.map(info =>info.name );
+  console.log(names)
+    const arr =[1,1,2,3,4,5,5,6,7,7];
+      let arr2 = [... new Set(arr)];
+      console.log(arr2);
+      console.log(arr);
+      
+
+    fromEvent(window,'scroll')
+      .pipe(throttleTime(30000))
+      .subscribe(()=> {
+        console.log('scroll event TRiggrd')
+      })
+
+      this.promi()
+       
+    }
+
+    promi(){
+    const promis = new Promise((resolve,reject)=>{
+          let success =true;
+          if(success){
+            resolve('promise resolved')
+          }
+          else {
+            reject(' promise rejected')
+          }
+    });
+      promis
+              .then((res) => console.log(res))
+              .catch((err) => console.log(err))
+              .finally(()=> console.log('kddklfdjkf promise.......'))
+    }
+ 
   pusmethid(){
     const arr : (number | string) [] =[1,2,3,4];
     const arr2 =arr.push("five");
@@ -65,9 +93,7 @@ userform! : FormGroup
     const ab = [2,5,"ddssd"]
     const concat = arr.concat(ab);
     console.log(concat);
-
     const aeejo =[1,2,3,4,5];
-
     const join = aeejo.join();
     console.log(typeof(join),join);
 

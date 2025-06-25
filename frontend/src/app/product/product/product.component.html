@@ -1,0 +1,17 @@
+<p>product works!</p>
+
+<div>
+    <form [formGroup]= "productform" (ngSubmit)="onsubmit()" >
+        <div >
+            <label for="product"> productname </label>
+            <input type="text" formControlName="productnamename">
+        </div>
+        <div>
+            <label for="address"> address </label>
+            <input type="text" formControlName="address">
+        </div>
+        <div >
+            <button type="submit">Click</button>
+        </div>
+    </form>
+</div>

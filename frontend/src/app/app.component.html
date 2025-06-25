@@ -1,15 +1,13 @@
 <router-outlet></router-outlet>
-<div>dksdkf</div>
-<h1 >{{ 'hello world' | capitals }}</h1>
-<div class="container" *ngIf="  router.url !== '/login' && router.url !== '/signup'">
+
+
+<div class="container" *ngIf="  router.url !== '/login' && router.url !== '/signup' && router.url !== '/user' && router.url !== '/product'">
   <p-card header="Welcome">
-    <p>Angular 14 with PrimeNG is ready!</p>
-    <button pButton type="button" label="Click Me" class="p-button-success"></button>
+    <!-- <p>Angular 14 with PrimeNG is ready!</p>
+    <button pButton type="button" label="Click Me" class="p-button-success"></button> -->
+    <input [formControl]="searchControl" placeholder="Search...">
   </p-card>
+  <div style="height:2000px;">Scroll me!</div>
 </div>
-<div>
-  <p>
-    border-box , border-clip, border-padding, border-origin, border-image
-  </p>
 
 
